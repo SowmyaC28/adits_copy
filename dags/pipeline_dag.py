@@ -22,9 +22,9 @@ dag = DAG(
     default_args=default_args,
     description='Pipeline',
     schedule_interval=None, # Set the schedule interval or use None for manual triggering
-    catchup=False,
+    catchup=False,    
 )
-
+# print('')
 load_data_task = PythonOperator(
     task_id='load_data_task',
     python_callable=load_data,
