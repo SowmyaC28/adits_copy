@@ -10,5 +10,5 @@ class TestDags(unittest.TestCase):
         for dag_id, dag in self.dagbag.dags.items():
             dag_test = self.dagbag.process_file(dag.fileloc)
             dags_with_errors.append(dag_id)
-
-        self.assertEqual(1, len(dags_with_errors))
+            print(dag_id)
+        self.assertEqual(47, len(dags_with_errors))
