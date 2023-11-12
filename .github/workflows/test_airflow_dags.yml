@@ -13,4 +13,4 @@ jobs:
       run: |
         pip install pytest
         pip install apache-airflow
-        pytest test_dag_validation.py
+        pytest test_dags.py
