@@ -1,6 +1,6 @@
 # Import necessary libraries and modules
 from airflow import DAG
-from airflow.operators.python_operator import PythonOperator
+#from airflow.operators.python import PythonOperator
 from airflow.operators.empty_operator import EmptyOperator
 from datetime import datetime, timedelta
 #from data_preprocess import load_data, data_preprocessing, drop, convert_strdate_to_datetime, slicer, merge_category, drop_2, ohe
