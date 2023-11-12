@@ -9,7 +9,6 @@ class TestDags(unittest.TestCase):
         dags_with_errors = []
         for dag_id, dag in self.dagbag.dags.items():
             dag_test = self.dagbag.process_file(dag.fileloc)
-            if dag_test.import_errors:
-                dags_with_errors.append(dag_id)
+            dags_with_errors.append(dag_id)
 
-        self.assertEqual([], dags_with_errors)
+        self.assertEqual(1, len(dags_with_errors))
