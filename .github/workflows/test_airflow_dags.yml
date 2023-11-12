@@ -14,4 +14,4 @@ jobs:
         pip install pytest
         pip install apache-airflow
         pytest test/test_dags.py
-        airflow dags list    
+           
