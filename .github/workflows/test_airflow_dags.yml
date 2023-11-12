@@ -17,4 +17,4 @@ jobs:
         pip install apache-airflow
     - name: Run tests
       run: |
-        python -m unittest discover tests
+        python -m unittest discover test
