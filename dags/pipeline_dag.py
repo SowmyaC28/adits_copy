@@ -9,7 +9,7 @@ import os
 
 os.environ['AIRFLOW_HOME'] = '../config/airflow.cfg'
 
-conf.set('core', 'enable_xcom_pickling', 'True')
+#conf.set('core', 'enable_xcom_pickling', 'True')
 
 default_args = {
     'owner': 'team5',
