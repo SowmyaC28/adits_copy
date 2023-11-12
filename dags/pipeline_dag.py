@@ -1,7 +1,7 @@
 # Import necessary libraries and modules
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
-from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.empty_operator import EmptyOperator
 from datetime import datetime, timedelta
 #from data_preprocess import load_data, data_preprocessing, drop, convert_strdate_to_datetime, slicer, merge_category, drop_2, ohe
 from airflow import configuration as conf
@@ -25,7 +25,7 @@ dag = DAG(
     schedule_interval=None, # Set the schedule interval or use None for manual triggering
     catchup=False,    
 )
-dummy_task = DummyOperator(
+dummy_task = EmptyOperator(
     task_id='dummy_task',
     dag=dag
 )
@@ -89,6 +89,7 @@ ohe_task = PythonOperator(
 #load_data_task >> data_preprocessing_task
 load_data_task >> drop_task >> convert_strdate_to_datetime_task >> slicer_task >> merge_category_task >> drop_2_task >> ohe_task
 '''
+dummy_task
 # If this script is run directly, allow command-line interaction with the DAG
 if __name__ == "__main__":
     dag.cli() 
