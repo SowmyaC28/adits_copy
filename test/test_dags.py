@@ -1,14 +1,6 @@
-import unittest
+import pytest
 from airflow.models import DagBag
 
-class TestDags(unittest.TestCase):
-    def setUp(self):
-        self.dagbag = DagBag()
-
-    def test_dag_integrity(self):
-        dags_with_errors = []
-        for dag_id, dag in self.dagbag.dags.items():
-            dag_test = self.dagbag.process_file(dag.fileloc)
-            dags_with_errors.append(dag_id)
-            print(dag_id)
-        self.assertEqual(47, len(dags_with_errors))
+def test_no_import_errors():
+  dag_bag = DagBag(dag_folder='dags/', include_examples=False)
+  assert len(dag_bag.import_errors) == 0, "No Import Failures"

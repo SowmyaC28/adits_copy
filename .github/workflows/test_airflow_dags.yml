@@ -1,20 +1,16 @@
 name: Airflow Workflow
 
-on: [push, pull_request]
+on: 
+  push:
+    branches: main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: Install dependencies
+    - uses: actions/checkout@v1
+    - name: Test DAGs with Pytest
       run: |
-        python -m pip install --upgrade pip
+        pip install pytest
         pip install apache-airflow
-    - name: Run tests
-      run: |
-        python -m unittest discover test
+        pytest test_dag_validation.py
