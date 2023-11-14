@@ -21,7 +21,7 @@ class TestPipeline(unittest.TestCase):
         """Check task count of hello_world dag"""
         dag_id='pipeline'
         dag = self.dagbag.get_dag(dag_id)
-        self.assertEqual(len(dag.tasks), 7)    
+        self.assertEqual(len(dag.tasks), 8)    
         
     '''    
 
