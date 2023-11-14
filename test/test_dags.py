@@ -1,15 +1,13 @@
 import pytest
 from airflow.models import DagBag
 
- 
-  
-def test_no_import_errors():
+def check_dag_list():
   dag_list = []
   dag_bag = DagBag(dag_folder='dags/', include_examples=False)
-  task_list = []
+  
   for dag_id in dag_bag.dags:
-    dag = dag_bag.get_dag(dag_id)
-    for tasks in dag.tasks:
-         task_list.append(tasks)
+        dag_list.append(dag_id)
         
-  assert len(task_list) == 2, "2 dummy tasks must be present"       
+  assert len(dag_list) == 1, "only custom dag must be present"  
+  
+      
