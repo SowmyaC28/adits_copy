@@ -36,7 +36,7 @@ class TestPipeline(unittest.TestCase):
 
         task_instance = dag.get_task('OHE')
         xcom_result = task_instance.xcom_pull(task_instance,key='return_value',task_ids='OHE')
-        
+        print(xcom_result)
         df = pickle.loads(xcom_result)
 
         self.assertTrue(len(df) > 0, "DataFrame should not be empty")
