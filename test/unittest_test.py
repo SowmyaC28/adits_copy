@@ -35,7 +35,7 @@ class TestPipeline(unittest.TestCase):
         
 
         task_instance = dag.get_task('OHE')
-        xcom_result = task_instance.xcom_pull(task_ids='OHE')
+        xcom_result = task_instance.xcom_pull(task_ids='OHE',context={})
         
         df = pickle.loads(xcom_result)
 
@@ -53,7 +53,7 @@ class TestPipeline(unittest.TestCase):
         dag.run()
 
         task_instance = dag.get_task('OHE')
-        xcom_result = task_instance.xcom_pull(task_ids='OHE')
+        xcom_result = task_instance.xcom_pull(task_ids='OHE',context={})
 
         df = pickle.loads(xcom_result)
 
