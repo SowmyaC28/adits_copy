@@ -31,9 +31,8 @@ class TestPipeline(unittest.TestCase):
         dag.run()
 
         task_instance = dag.get_task('OHE')
-        xcom_result = task_instance.xcom_pull()
-        print(xcom_result)
-        df = pickle.loads(xcom_result)
+       
+        df = task_instance.output
 
         self.assertTrue(len(df) > 0, "DataFrame should not be empty")
         self.assertEqual(df.shape[1], 68, "Number of columns should be 68" )
@@ -49,9 +48,9 @@ class TestPipeline(unittest.TestCase):
         dag.run()
 
         task_instance = dag.get_task('OHE')
-        xcom_result = task_instance.xcom_pull()
+        
 
-        df = pickle.loads(xcom_result)
+        df = task_instance.output
 
         def is_one_hot_encoded(column):
             unique_values = column.unique()
