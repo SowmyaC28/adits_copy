@@ -12,6 +12,7 @@ jobs:
     - name: Test DAGs with Pytest
       run: |
         pip install pytest
+        pip intsall pandas
         pip install apache-airflow
         pytest test/test_dags.py
            
