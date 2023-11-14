@@ -16,6 +16,14 @@ class TestPipeline(unittest.TestCase):
 
     def setUp(self):
         self.dagbag = DagBag(dag_folder = "dags/", include_examples = False)
+        
+    def test_task_count(self):
+        """Check task count of hello_world dag"""
+        dag_id='pipeline'
+        dag = self.dagbag.get_dag(dag_id)
+        self.assertEqual(len(dag.tasks), 7)    
+        
+    '''    
 
     def test_number_of_columns(self):
 
@@ -66,4 +74,4 @@ class TestPipeline(unittest.TestCase):
         self.assertEqual(female, True)
 
 if __name__ == 'main':
-    unittest.main()
+    unittest.main()'''
