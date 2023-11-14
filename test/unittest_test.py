@@ -30,7 +30,7 @@ class TestPipeline(unittest.TestCase):
 
         dag.run()
 
-        task_instance = dag.get_task('ohe_task')
+        task_instance = dag.get_task('OHE')
         xcom_result = task_instance.xcom_pull(task_ids='OHE')
         
         df = pickle.loads(xcom_result)
