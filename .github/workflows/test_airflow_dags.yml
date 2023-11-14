@@ -15,13 +15,13 @@ jobs:
         pip install pandas
         pip install apache-airflow
     - name: Initialize Airflow database
-        run: |
-          airflow db init
+      run: |
+        airflow db init
 
-      - name: Upgrade Airflow database
-        run: |
-          airflow db upgrade
+    - name: Upgrade Airflow database
+      run: |
+        airflow db upgrade
 
-      - name: Test DAGs with Pytest
-        run: |
-          pytest test/unittest_test.py
+    - name: Test DAGs with Pytest
+      run: |
+        pytest test/unittest_test.py
