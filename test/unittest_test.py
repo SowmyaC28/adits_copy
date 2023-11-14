@@ -26,8 +26,7 @@ class TestPipeline(unittest.TestCase):
 
         print(dag)
 
-        if dag:
-            dag.clear()
+        
 
         dag.run()
 
