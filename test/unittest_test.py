@@ -33,7 +33,7 @@ class TestPipeline(unittest.TestCase):
         upstream_task_ids = list(map(lambda task: task.task_id, drop_task.upstream_list))
         self.assertListEqual(upstream_task_ids, ['load_data_task'])
         downstream_task_ids = list(map(lambda task: task.task_id, drop_task.downstream_list))
-        self.assertListEqual(downstream_task_ids, ['Convert_strdate_to_datetime'])
+        self.assertListEqual(downstream_task_ids, ['Convert_string_date_to_datetime'])
       
         
     '''    
