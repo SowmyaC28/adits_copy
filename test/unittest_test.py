@@ -21,7 +21,20 @@ class TestPipeline(unittest.TestCase):
         """Check task count of hello_world dag"""
         dag_id='pipeline'
         dag = self.dagbag.get_dag(dag_id)
-        self.assertEqual(len(dag.tasks), 8)    
+        self.assertEqual(len(dag.tasks), 8)  
+        
+    def test_dependencies_of_ohe_task(self):
+        """Check the task dependencies of dummy_task in hello_world dag"""
+        dag_id='hello_world'
+        dag = self.dagbag.get_dag(dag_id)
+        dummy_task = dag.get_task('drop_task')
+
+
+        upstream_task_ids = list(map(lambda task: task.task_id, drop_task.upstream_list))
+        self.assertListEqual(upstream_task_ids, ['load_data_task'])
+        downstream_task_ids = list(map(lambda task: task.task_id, dummy_task.downstream_list))
+        self.assertListEqual(downstream_task_ids, ['convert_strdate_to_datetime_task', 'slicer_task','merge_category_task',' drop_2_task','ohe_task'])
+      
         
     '''    
 
