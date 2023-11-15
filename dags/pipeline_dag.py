@@ -17,7 +17,7 @@ def load_data():
 
     df = pd.DataFrame()
     chunk_size = 10000  # Adjust the chunk size as needed
-    chunks = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/file.csv"), chunksize=chunk_size)
+    chunks = pd.read_csv(os.path.join(os.path.dirname(__file__), "data/file.csv"), chunksize=chunk_size)
     for chunk in chunks:
         df = pd.concat([df, chunk], axis = 0)
         break
@@ -106,6 +106,11 @@ def ohe(data):
     clustered_data = pickle.dumps(df_train_set)
     return clustered_data
 
+def write_data(data):
+    df = pickle.loads(data)
+    
+    df.to_csv(os.path.join(os.path.dirname(__file__), "data/file.csv"),index=False)
+
 
 conf.set('core', 'enable_xcom_pickling', 'True')
 
@@ -180,8 +185,15 @@ ohe_task = PythonOperator(
     dag=dag,
 )
 
+write_to_file = PythonOperator(
+    task_id = 'write_to_file',
+    python_callable = write_data,
+    op_args=[ohe_task.output],
+    dag=dag,
+)
+
 #load_data_task >> data_preprocessing_task
-load_data_task >> drop_task >> convert_strdate_to_datetime_task >> slicer_task >> merge_category_task >> drop_2_task >> ohe_task
+load_data_task >> drop_task >> convert_strdate_to_datetime_task >> slicer_task >> merge_category_task >> drop_2_task >> ohe_task>>write_to_file
 
 
 # If this script is run directly, allow command-line interaction with the DAG

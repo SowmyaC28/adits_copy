@@ -21,7 +21,7 @@ class TestPipeline(unittest.TestCase):
         """Check task count of pipeline dag"""
         dag_id='pipeline'
         dag = self.dagbag.get_dag(dag_id)
-        self.assertEqual(len(dag.tasks), 8)  
+        self.assertEqual(len(dag.tasks), 9)  
         
     def test_dependencies_of_drop_task(self):
         """Check the task dependencies of drop_task in pipeline dag"""
