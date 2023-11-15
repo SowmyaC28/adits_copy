@@ -27,7 +27,7 @@ class TestPipeline(unittest.TestCase):
         """Check the task dependencies of drop_task in pipeline dag"""
         dag_id='pipeline'
         dag = self.dagbag.get_dag(dag_id)
-        dummy_task = dag.get_task('drop_task')
+        dummy_task = dag.get_task(dag)
 
 
         upstream_task_ids = list(map(lambda task: task.task_id, drop_task.upstream_list))
