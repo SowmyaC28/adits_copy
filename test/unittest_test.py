@@ -18,14 +18,14 @@ class TestPipeline(unittest.TestCase):
         self.dagbag = DagBag(dag_folder = "dags/", include_examples = False)
         
     def test_task_count(self):
-        """Check task count of hello_world dag"""
+        """Check task count of pipeline dag"""
         dag_id='pipeline'
         dag = self.dagbag.get_dag(dag_id)
         self.assertEqual(len(dag.tasks), 8)  
         
     def test_dependencies_of_ohe_task(self):
-        """Check the task dependencies of dummy_task in hello_world dag"""
-        dag_id='hello_world'
+        """Check the task dependencies of drop_task in pipeline dag"""
+        dag_id='pipeline'
         dag = self.dagbag.get_dag(dag_id)
         dummy_task = dag.get_task('drop_task')
 
